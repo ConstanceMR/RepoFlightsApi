@@ -24,36 +24,22 @@ public class FlightService {
    @Autowired
    CompanyRepository companyRepository;
 
-//   public List<Flight> getAllFlights() {
-//       return flightRepository.findAll();
-//   }
+//
     public List<FlightDto> getAllFlights(){
         List<Flight> flightList = flightRepository.findAll();
         return flightUtils.flightMapperList(flightList, getDolarPrice());
 
     }
 
-
-
     public Optional<Flight> createFlight(Flight flight, long companyId) {
         flight.setCompany(companyRepository.findById(companyId).orElse(null));
         return Optional.of(flightRepository.save(flight));
     }
 
-//    public Optional<Flight> findFlightById(long id) {
-//        return flightRepository.findById(id);
-//    }
-//
-//    public void deleteFlightById(Long id) {
-//        flightRepository.deleteById(id);
-//    }
-
     public Optional<Flight> updateFlight(Flight flight) {
         flightRepository.save(flight);
         return  flightRepository.findById(flight.getId());
     }
-
-
 
     public Flight findFlightById(long id){
         return flightRepository.findById(id).orElse(null);

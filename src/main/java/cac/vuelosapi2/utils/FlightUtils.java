@@ -16,7 +16,6 @@ public class FlightUtils {
                 .collect(Collectors.toList());
     }
 
-
     public List<FlightDto> flightMapperList(List<Flight> flightList, double dolarPrice){
         return flightList.stream()
                 .map(flight-> new FlightDto(flight.getId(), flight.getDestiny(), flight.getOrigin(), flight.getDepartureDate(), flight.getArrivingDate(), flight.getFrecuency(), flight.getPrice()*dolarPrice))
