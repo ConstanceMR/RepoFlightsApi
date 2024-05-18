@@ -11,6 +11,7 @@ public class FlightConfiguration {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
+
     public Dolar fetchDolar(){
         RestTemplate restTemplate = restTemplate();
         String apiUrl = "https://dolarapi.com/v1/dolares/tarjeta";

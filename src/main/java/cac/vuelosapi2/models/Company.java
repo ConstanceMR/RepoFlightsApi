@@ -18,9 +18,11 @@ public class Company {
     private Long id;
     private String name;
     private String banner;
+    private String page;
 
-    public Company(String name, String banner) {
+    public Company(String name, String banner, String page) {
         this.name = name;
         this.banner = banner;
+        this.page = page;
     }
 }

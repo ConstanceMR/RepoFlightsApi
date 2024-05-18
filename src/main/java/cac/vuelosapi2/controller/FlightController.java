@@ -2,6 +2,7 @@ package cac.vuelosapi2.controller;
 
 import cac.vuelosapi2.models.Dolar;
 import cac.vuelosapi2.models.Flight;
+import cac.vuelosapi2.models.FlightDto;
 import cac.vuelosapi2.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +16,19 @@ public class FlightController {
     @Autowired//inyectamos
     FlightService flightService;
 
+    @CrossOrigin
     @GetMapping("")//devuelve todos los vuelos
-    public List<Flight> getAllFlights(){
+    public List<FlightDto> getAllFlights(){
         return flightService.getAllFlights();
     }
 
-    @PostMapping("/add")//agregar vuelos
-    public void createFlight(@RequestBody Flight flight){
-        flightService.createFlight(flight);
+    @PostMapping("/add")
+    public Optional<Flight> createFlight(@RequestBody Flight flight, @RequestParam Long companyId){
+        return flightService.createFlight(flight,companyId);
     }
+
     @GetMapping("/{id}")//devuelve un vuelo por el id
-    public Optional<Flight> findFlightById(@PathVariable Long id){
+    public Flight findFlightById(@PathVariable Long id){
         return flightService.findFlightById(id);
     }
     @DeleteMapping("/delete/{id}")//elimina un vuelo
@@ -44,15 +47,9 @@ public class FlightController {
     public List<Flight> getFlightByLocation(@RequestParam String origin, @RequestParam String destiny){
         return flightService.getByOriginAndDestiny(origin, destiny);
     }
-    @GetMapping("/offers")
-    public List<Flight> getOffers(){
-        Double offerPrice = 350.00;
+    @GetMapping("/flight-offers")
+    public List<Flight> getOffers(@RequestParam Integer offerPrice){
         return flightService.getOffers(offerPrice);
     }
-    //trae el json del dolar tarjeta
 
-    @GetMapping("/dolarprice")
-    public double getDolar(){
-        return flightService.getDolar();
-    }
 }

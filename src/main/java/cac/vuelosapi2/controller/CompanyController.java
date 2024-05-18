@@ -20,7 +20,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Company> findCompanyById(@PathVariable long id){
+    public Optional<Company> findCompanyById(@PathVariable Long id){
         return companyService.findCompanyById(id);
     }
 
