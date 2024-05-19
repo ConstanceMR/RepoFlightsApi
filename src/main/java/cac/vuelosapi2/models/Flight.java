@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@AllArgsConstructor//genera constructor con todos los argumentos
-@NoArgsConstructor//genera el constructor sin argumentos
-@Data//genera getters y setters
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class Flight {
     @Id

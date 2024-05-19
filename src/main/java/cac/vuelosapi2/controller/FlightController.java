@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController//recibe las peticiones
-@RequestMapping("/flights")//nos permite saber cual va a ser la direccion
+@RestController
+@RequestMapping("/flights")
 public class FlightController {
-    @Autowired//inyectamos
+    @Autowired
     FlightService flightService;
 
     @CrossOrigin
-    @GetMapping("")//devuelve todos los vuelos
+    @GetMapping("")
     public List<FlightDto> getAllFlights(){
         return flightService.getAllFlights();
     }
@@ -27,15 +27,15 @@ public class FlightController {
         return flightService.createFlight(flight,companyId);
     }
 
-    @GetMapping("/{id}")//devuelve un vuelo por el id
+    @GetMapping("/{id}")
     public Flight findFlightById(@PathVariable Long id){
         return flightService.findFlightById(id);
     }
-    @DeleteMapping("/delete/{id}")//elimina un vuelo
+    @DeleteMapping("/delete/{id}")
     public void deleteFlight(@PathVariable Long id){
         flightService.deleteFlightById(id);
     }
-    @PutMapping("/update")//modificar un vuelo
+    @PutMapping("/update")
     public Optional<Flight> updateFlight(@RequestBody Flight flight) {
         return flightService.updateFlight(flight);
     }
